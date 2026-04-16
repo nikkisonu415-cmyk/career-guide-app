@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Best Career</title>
+  <link rel="stylesheet" href="../style.css">
+  <!-- ✅ ICON HERE -->
+  <link rel="icon" href="../assets/icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+
+<body>
+
+<h2>Find Best Career for You</h2>
+
+<!-- Interest -->
+<select id="interest"></select>
+
+<!-- Budget -->
+<input id="budget" placeholder="Max Budget (₹)">
+
+<!-- Min Salary -->
+<input id="salary" placeholder="Expected Salary (₹)">
+
+<button onclick="findBest()">Find</button>
+
+<div id="result"></div>
+
+<!-- AD START -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3940256099942544"
+     data-ad-slot="6300978111"
+     data-ad-format="auto"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<!-- AD END -->
+
+<script src="../data/careers.js"></script>
+
+<script src="../data/careers.js"></script>
+
+<script>
+// get dropdown
+const interestDropdown = document.getElementById("interest");
+
+// get unique categories
+let categories = [...new Set(careers.map(c => c.category))];
+
+// add All option
+interestDropdown.innerHTML = `<option value="All">All Categories</option>`;
+
+// populate dropdown
+categories.forEach(cat => {
+  interestDropdown.innerHTML += `<option value="${cat}">${cat}</option>`;
+});
+</script>
+
+<script>
+function findBest() {
+  let interest = document.getElementById("interest").value;
+  let budget = document.getElementById("budget").value;
+  let salary = document.getElementById("salary").value;
+
+  let filtered = careers.filter(c =>
+  (interest === "All" || c.category === interest) &&
+  c.cost <= budget &&
+  c.salary >= salary
+  );
+
+  if (filtered.length === 0) {
+    document.getElementById("result").innerHTML =
+      "<p>No career found. Try changing inputs.</p>";
+    return;
+  }
+
+  // pick best = highest salary
+  let best = filtered.reduce((a, b) => {
+  let scoreA = a.salary - a.cost;
+  let scoreB = b.salary - b.cost;
+  return scoreA > scoreB ? a : b;
+});
+
+  document.getElementById("result").innerHTML = `
+  <div class="best-card">
+    <h2>🎯 ${best.name}</h2>
+    <p>💰 Salary: ₹${best.salary}</p>
+    <p>📉 Cost: ₹${best.cost}</p>
+    <p>⏳ Duration: ${best.duration} years</p>
+    <p>📂 Category: ${best.category}</p>
+  </div>
+`;
+}
+</script>
+<div class="navbar">
+  <div class="nav-item" onclick="goTo('../index.html')">🏠<br><small>Home</small></div>
+  <div class="nav-item" onclick="goTo('careers.html')">💼<br><small>Careers</small></div>
+  <div class="nav-item" onclick="goTo('compare.html')">⚖️<br><small>Compare</small></div>
+  <div class="nav-item" onclick="goTo('roi.html')">💰<br><small>ROI</small></div>
+  <div class="nav-item active" onclick="goTo('best.html')">🎯<br><small>Best</small></div>
+</div>
+<script src="../script.js"></script>
+</body>
+</html>

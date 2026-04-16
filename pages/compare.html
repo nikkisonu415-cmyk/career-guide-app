@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Compare Careers</title>
+  <link rel="stylesheet" href="../style.css">
+  <!-- ✅ ICON HERE -->
+  <link rel="icon" href="../assets/icon.png">
+</head>
+
+<body>
+
+<h2>Compare Careers</h2>
+
+<select id="c1"></select>
+<select id="c2"></select>
+
+<button onclick="compare()">Compare</button>
+
+<div id="result"></div>
+
+<script src="../data/careers.js"></script>
+
+<script>
+  const c1 = document.getElementById("c1");
+  const c2 = document.getElementById("c2");
+
+  careers.forEach(c => {
+    c1.innerHTML += `<option>${c.name}</option>`;
+    c2.innerHTML += `<option>${c.name}</option>`;
+  });
+
+  function compare() {
+    let a = careers.find(c => c.name === c1.value);
+    let b = careers.find(c => c.name === c2.value);
+
+    document.getElementById("result").innerHTML = `
+  <div class="compare-container">
+
+    <div class="compare-card">
+      <h3>${a.name}</h3>
+      <p>💰 ₹${a.salary}</p>
+      <p>📉 ₹${a.cost}</p>
+      <p>⏳ ${a.duration} yrs</p>
+    </div>
+
+    <div class="vs">VS</div>
+
+    <div class="compare-card">
+      <h3>${b.name}</h3>
+      <p>💰 ₹${b.salary}</p>
+      <p>📉 ₹${b.cost}</p>
+      <p>⏳ ${b.duration} yrs</p>
+    </div>
+
+  </div>
+`;
+  }
+</script>
+<div class="navbar">
+  <div class="nav-item" onclick="goTo('../index.html')">🏠<br><small>Home</small></div>
+  <div class="nav-item" onclick="goTo('careers.html')">💼<br><small>Careers</small></div>
+  <div class="nav-item active" onclick="goTo('compare.html')">⚖️<br><small>Compare</small></div>
+  <div class="nav-item" onclick="goTo('roi.html')">💰<br><small>ROI</small></div>
+  <div class="nav-item" onclick="goTo('best.html')">🎯<br><small>Best</small></div>
+</div>
+<script src="../script.js"></script>
+</body>
+</html>

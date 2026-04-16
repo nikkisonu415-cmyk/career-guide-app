@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ROI Calculator</title>
+  <link rel="stylesheet" href="../style.css">
+  <!-- ✅ ICON HERE -->
+  <link rel="icon" href="../assets/icon.png">
+</head>
+
+<body>
+
+<h2>ROI Calculator</h2>
+
+<input id="cost" placeholder="Course Cost (₹)">
+<input id="salary" placeholder="Yearly Salary (₹)">
+
+<button onclick="calc()">Calculate</button>
+
+<div id="output"></div>
+
+<!-- AD START -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-XXXX"
+     data-ad-slot="XXXX"
+     data-ad-format="auto"></ins>
+
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<!-- AD END -->
+
+<script>
+function calc() {
+  let cost = parseInt(document.getElementById("cost").value);
+  let salary = parseInt(document.getElementById("salary").value);
+
+  let years = (cost / salary).toFixed(1);
+
+  document.getElementById("output").innerHTML = `
+  <div class="roi-card">
+    <h3>📊 ROI Result</h3>
+    <p>⏳ Break-even: ${years} years</p>
+    <p>💰 Profit: ₹${salary - cost}</p>
+  </div>
+`;
+}
+</script>
+<div class="navbar">
+  <div class="nav-item" onclick="goTo('../index.html')">🏠<br><small>Home</small></div>
+  <div class="nav-item" onclick="goTo('careers.html')">💼<br><small>Careers</small></div>
+  <div class="nav-item" onclick="goTo('compare.html')">⚖️<br><small>Compare</small></div>
+  <div class="nav-item active" onclick="goTo('roi.html')">💰<br><small>ROI</small></div>
+  <div class="nav-item" onclick="goTo('best.html')">🎯<br><small>Best</small></div>
+</div>
+<script src="../script.js"></script>
+</body>
+</html>
